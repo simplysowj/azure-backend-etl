@@ -1,0 +1,3 @@
+npm install axios :->{ library to connect backend to frontend}
+
+app.js{ first component in react }:-> index.js :-> index.html

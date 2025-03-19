@@ -111,12 +111,15 @@ DJANGO_SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Specifies the PostgreSQL database backend
-        'NAME': 'business_db',  # The name of your PostgreSQL database
-        'USER': 'postgres',  # The PostgreSQL username (usually 'postgres' by default)
-        'PASSWORD': 'Sairam',  # The PostgreSQL password for the 'postgres' user
-        'HOST': 'localhost',  # PostgreSQL is running locally (localhost), change if it's on a different server
-     'PORT': '5432',  # Default PostgreSQL port
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',  # Replace with the actual database name you created
+        'USER': 'sowji@etlpostgre',  # Your PostgreSQL username, including the server name
+        'PASSWORD': 'Sairam#123',  # Your PostgreSQL password
+        'HOST': 'etlpostgre.postgres.database.azure.com',  # Your Azure PostgreSQL host
+        'PORT': '5432',  # Default PostgreSQL port
+        'OPTIONS': {
+            'sslmode': 'require',  # Ensure SSL connection
+        },
     }
 }
 

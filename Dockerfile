@@ -1,52 +1,35 @@
-# Step 1: Use the official Python image as a base
-#FROM python:3.11-slim
+# Use an official Python runtime as a parent image
+FROM python:3.11-slim
 
-# Step 2: Set the working directory inside the container
-#WORKDIR /app
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# Step 3: Copy the backend code into the container
+# Set working directory inside the container
+WORKDIR /app
 
-#COPY backend/apiview/orm1/requirements.txt /app/requirements.txt
-# Step 4: Install dependencies from requirements.txt
-#RUN pip install --no-cache-dir -r requirements.txt
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    gcc \
+    curl \
+&& rm -rf /var/lib/apt/lists/*
 
-# Step 5: Copy the rest of the backend code into the container
-#COPY backend/apiview/orm1 /app
+# Install pipenv or requirements.txt dependencies
+COPY requirements.txt .
 
-# Step 6: Expose port 8000 for the Django app
-#EXPOSE 8000
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
 
-# Step 7: Set environment variables for Python
-#ENV PYTHONUNBUFFERED=1
+# Copy project files into the container
+COPY . .
 
-# Step 8: Run Django migrations and start the app
-#CMD ["gunicorn", "--bind", "0.0.0.0:8000", "orm1.wsgi:application"]
+# Collect static files (optional, for production)
+# RUN python manage.py collectstatic --noinput
 
-FROM python:3.10-slim 
+# Expose port (optional, for development)
+EXPOSE 8000
 
- 
-
-WORKDIR /app 
-
- 
-
-COPY requirements.txt /app/ 
-
-RUN pip install --no-cache-dir -r requirements.txt 
-
- 
-
-COPY . /app/ 
-
- 
-
-ENV PYTHONDONTWRITEBYTECODE=1 
-
-ENV PYTHONUNBUFFERED=1 
-
- 
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"] 
-
- 
-
+# Default command to run the app
+CMD ["gunicorn", "orm1.wsgi:application", "--bind", "0.0.0.0:8000"]

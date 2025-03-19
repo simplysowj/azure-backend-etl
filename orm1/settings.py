@@ -27,7 +27,7 @@ load_dotenv()
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Vite React URL
     "https://616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app",
-     "djangoappcontainer2025unique.azurewebsites.net"
+     "https://djangoappcontainer2025unique.azurewebsites.net"
     
 ]
 CORS_ALLOW_ALL_ORIGINS = True
@@ -50,7 +50,7 @@ DEBUG =  'True'
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["https://616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app",
-                        "djangoappcontainer2025unique.azurewebsites.net"]
+                        "https://djangoappcontainer2025unique.azurewebsites.net"]
 
 
 

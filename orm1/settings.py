@@ -108,20 +108,40 @@ WSGI_APPLICATION = 'orm1.wsgi.application'
 #DATABASE_URL = os.getenv('DATABASE_URL')
 DJANGO_SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
+import os
+import base64
+
+
+
+ssl_cert = os.getenv('PG_SSLROOTCERT', None)  # Fetch Base64 encoded cert from env
+cert_path = "/tmp/azure_postgres_root.pem"
+
+if ssl_cert:
+    try:
+        # Decode from Base64 and write to a .pem file
+        with open(cert_path, "wb") as cert_file:
+            cert_file.write(base64.b64decode(ssl_cert))
+        print(f"✅ SSL certificate written to {cert_path}")
+    except Exception as e:
+        print(f"❌ Error writing SSL cert: {e}")
+else:
+    print("⚠ No SSL certificate found in environment variables.")
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',  # Replace with the actual database name you created
-        'USER': 'sowji',  # Your PostgreSQL username, including the server name
+        'NAME': 'postgres',  # Replace with your actual database name
+        'USER': 'sowji',  # Your PostgreSQL username
         'PASSWORD': 'Sairam#123',  # Your PostgreSQL password
         'HOST': 'etlpostgre.postgres.database.azure.com',  # Your Azure PostgreSQL host
         'PORT': '5432',  # Default PostgreSQL port
         'OPTIONS': {
             'sslmode': 'verify-full',  # Ensure SSL connection
+            'sslrootcert': cert_path if ssl_cert else None,  # Provide cert path if ssl_cert exists
         },
     }
 }
+
 
 
 # ✅ Use Azure PostgreSQL Database

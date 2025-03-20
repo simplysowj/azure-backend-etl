@@ -113,12 +113,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',  # Replace with the actual database name you created
-        'USER': 'sowji@etlpostgre',  # Your PostgreSQL username, including the server name
+        'USER': 'sowji',  # Your PostgreSQL username, including the server name
         'PASSWORD': 'Sairam#123',  # Your PostgreSQL password
         'HOST': 'etlpostgre.postgres.database.azure.com',  # Your Azure PostgreSQL host
         'PORT': '5432',  # Default PostgreSQL port
         'OPTIONS': {
-            'sslmode': 'require',  # Ensure SSL connection
+            'sslmode': 'verify-full',  # Ensure SSL connection
         },
     }
 }

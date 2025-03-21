@@ -28,7 +28,7 @@ COPY sshd_config.txt /etc/ssh/sshd_config
 # Copy application files
 COPY . .
 
-# Ensure start.sh has execute permissions
+COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 
 # Expose ports for Django and SSH

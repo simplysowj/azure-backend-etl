@@ -138,6 +138,7 @@ DATABASES = {
          'OPTIONS': {
             'sslmode': 'disable',  # Disabling SSL encryption
         },
+    }
 }
 
 

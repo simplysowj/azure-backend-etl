@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Start SSH service in the background
-/usr/sbin/sshd -D &
+service ssh start
 
 # Run Django database migrations
 python manage.py migrate

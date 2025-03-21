@@ -136,7 +136,7 @@ DATABASES = {
         'HOST': 'etlpostgre.postgres.database.azure.com',  # Your Azure PostgreSQL host
         'PORT': '5432',  # Default PostgreSQL port
          'OPTIONS': {
-            'sslmode': 'disable',  # Disabling SSL encryption
+            'sslmode': 'require',  # Disabling SSL encryption
            
         },
     }

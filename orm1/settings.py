@@ -137,7 +137,7 @@ DATABASES = {
         'PORT': '5432',  # Default PostgreSQL port
          'OPTIONS': {
             'sslmode': 'verify-full',  # Disabling SSL encryption
-             'sslrootcert':'orm1/DigiCertGlobalRootG2.crt.pem'
+            'sslrootcert': str(BASE_DIR / 'orm1' / 'DigiCertGlobalRootG2.crt.pem')
         },
     }
 }

@@ -1,33 +1,28 @@
-# Use an official Python runtime as a parent image
 FROM python:3.11-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Set working directory inside the container
 WORKDIR /app
 
-# Install system dependencies including SSH
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    openssh-server \
     build-essential \
     libpq-dev \
     gcc \
     curl && \
-    rm -rf /var/lib/apt/lists/*  # Clean up apt cache
+    rm -rf /var/lib/apt/lists/*
 
-# Set up SSH configuration
-RUN mkdir /var/run/sshd && \
-    echo 'root:Docker!' | chpasswd && \
-    chmod 600 /etc/ssh/sshd_config
+# Copy requirements.txt and install Python dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Copy SSH configuration file
+# Copy SSH configuration and application files
 COPY sshd_config.txt /etc/ssh/sshd_config
-
-# Copy application files
 COPY . .
 
+# Copy start.sh and set it as executable
 COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 

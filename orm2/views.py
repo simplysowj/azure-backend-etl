@@ -53,11 +53,14 @@ def run_script():
     global script_running
     try:
         conn = psycopg2.connect(
-            database="business_db",
-            user="postgres",
-            password="Sairam",
-            host="postgres-db",
-            port="5432"
+            database="postgres",
+            user="sowji",
+            password="Sairam#123",
+            host="etlpostgre.postgres.database.azure.com",
+            port="5432",
+            'OPTIONS': {
+            'sslmode':'disable'
+        }
         )
         print("Connected to PostgreSQL successfully!")
 

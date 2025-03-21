@@ -35,4 +35,4 @@ RUN chmod +x /app/start.sh
 EXPOSE 8000 2222
 
 # Start SSH and Django App
-CMD ["/app/start.sh"]
+CMD ["/bin/bash", "/app/start.sh"]

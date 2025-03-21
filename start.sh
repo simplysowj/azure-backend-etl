@@ -7,4 +7,4 @@
 python manage.py migrate
 
 # Start Django app with Gunicorn
-gunicorn orm1.wsgi:application --bind 0.0.0.0:8000
+gunicorn --bind 0.0.0.0:8000 orm1.wsgi:application 

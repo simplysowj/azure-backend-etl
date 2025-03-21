@@ -44,5 +44,5 @@ EXPOSE 2222
 #CMD service ssh start && python manage.py migrate && gunicorn orm1.wsgi:application --bind 0.0.0.0:8000
 # Run migrations, create superuser, and start the app
 CMD python manage.py migrate && \
-    python manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('sowji', 'sowji@example.com', 'sowji')" && \
+    python manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('sowjanya', 'sowji1@example.com', 'sowji')" && \
     gunicorn orm1.wsgi:application --bind 0.0.0.0:8000

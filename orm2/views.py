@@ -58,7 +58,10 @@ def run_script():
             password="Sairam#123",
             host="etlpostgre.postgres.database.azure.com",
             port="5432",
-            options="-c sslmode=disable" 
+            'OPTIONS': {
+            'sslmode': 'require',  # Disabling SSL encryption
+           
+        },
         )
         print("Connected to PostgreSQL successfully!")
 

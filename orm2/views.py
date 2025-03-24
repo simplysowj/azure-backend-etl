@@ -56,8 +56,8 @@ def run_script():
             database="postgres",
             user="sowji",
             password="Sairam#123",
-            host="etlpostgre.postgres.database.azure.com",
-            port="5432",
+            host="etlsql.mysql.database.azure.com",
+            port="3306",
             sslmode='require'
         )
         print("Connected to PostgreSQL successfully!")

@@ -11,6 +11,7 @@ import time
 import psycopg2
 import random
 from rest_framework.decorators import api_view
+import mysql.connector
 
 # Global variables for script control
 script_running = False
@@ -44,7 +45,7 @@ def insert_data(conn, data):
         conn.commit()  # Commit after inserting data
         print("Inserted data successfully!")
         cur.close()
-    except psycopg2.Error as e:
+    except mysql.connector.Error as e:
         print(f"Error inserting data: {e}")
         conn.rollback()  # Rollback if there's an error
 
@@ -52,15 +53,15 @@ def insert_data(conn, data):
 def run_script():
     global script_running
     try:
-        conn = psycopg2.connect(
+        conn = mysql.connector.connect(
             database="postgres",
             user="sowji",
             password="Sairam#123",
             host="etlsql.mysql.database.azure.com",
             port="3306",
-            sslmode='require'
+            ssl_disabled=True'
         )
-        print("Connected to PostgreSQL successfully!")
+        print("Connected to mysql successfully!")
 
         while script_running:
             data = generate_data()
@@ -69,8 +70,8 @@ def run_script():
                 print(row)
             time.sleep(20)
 
-    except psycopg2.Error as e:
-        print(f"Error connecting to PostgreSQL: {e}")
+    except mysql.connector.Error as e:
+        print(f"Error connecting to MySQL: {e}")
 
     finally:
         if 'conn' in locals() and conn is not None:

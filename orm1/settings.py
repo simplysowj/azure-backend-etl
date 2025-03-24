@@ -152,9 +152,7 @@ DATABASES = {
         'PASSWORD': 'Sairam#123',  # Your PostgreSQL password
         'HOST': 'etlsql.mysql.database.azure.com',  # Your Azure PostgreSQL host
         'PORT': '3306',  # Default PostgreSQL port
-         'OPTIONS': {
-            ssl_disabled=True  # Adjust SSL settings if needed
-        },
+        
     }
 }
 

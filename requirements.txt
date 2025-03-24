@@ -18,4 +18,5 @@ dj_database_url
 python-dotenv==0.21.0
 whitenoise
 gunicorn
+mysqlclient
 pymysql

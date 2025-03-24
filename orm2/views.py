@@ -58,8 +58,8 @@ def run_script():
             user="sowji",
             password="Sairam#123",
             host="etlsql.mysql.database.azure.com",
-            port="3306",
-            ssl_disabled=True'
+            port="3306"
+           
         )
         print("Connected to mysql successfully!")
 

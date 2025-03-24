@@ -11,7 +11,7 @@ import time
 import psycopg2
 import random
 from rest_framework.decorators import api_view
-
+import mysql.connector
 
 # Global variables for script control
 script_running = False

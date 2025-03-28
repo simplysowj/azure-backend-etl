@@ -17,6 +17,108 @@ from openai import OpenAI
 OpenAI.api_key ="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"
 client = OpenAI()
 
+def generate_sql(natural_language_query, table_description):
+    """
+    Generates an SQL query from natural language using OpenAI.
+
+    Args:
+        natural_language_query: The natural language query string.
+        table_description: Description of the table schema.
+
+    Returns:
+        A valid SQL query string or None if an error occurs.
+    """
+    try:
+        prompt = f"""
+        You are an AI SQL query generator. 
+        Given the following table schema:
+        {table_description}
+        
+        Generate a SQL query to answer the following question:
+        "{natural_language_query}"
+        
+        Important rules:
+        - Return only the SQL query. Do not add any explanation, preface, or natural language response.
+        - The query must be a valid SQL SELECT statement.
+        - Use standard SQL syntax compatible with PostgreSQL.
+        - remove sql before the query i need result with the first word select 
+        """
+
+        response = client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=[
+                {"role": "system", "content": "You generate PostgreSQL SQL queries based on user questions."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=200
+        )
+
+        sql_query = response.choices[0].message.content.strip()
+        print(f"Generated SQL: {sql_query}")
+
+
+        # Ensure response is a valid SQL SELECT statement
+        if not sql_query.lower().startswith("select"):
+            raise ValueError(f"Invalid SQL generated: {sql_query}")
+
+        return sql_query
+
+    except Exception as e:
+        print(f"Error generating SQL: {e}")
+        return None
+def determine_graph_type(columns, results):
+    """
+    Determines the appropriate graph type based on the SQL results.
+    - If there are two columns, use a **bar or pie chart** (if the second column is numeric).
+    - If there are multiple numeric columns, use a **line or scatter plot**.
+    """
+    print(columns)
+    print(results)
+    print(len(columns))
+    if len(columns) == 2 and all(isinstance(row[1], (int, float)) for row in results):
+        return "bar"  # Suitable for category vs. value
+    elif len(columns) > 2:
+        return "line"  # Time-series or multi-variable trends
+    return None  # No suitable graph
+
+@api_view(["POST"])
+def execute_query(request):
+    try:
+        # Get query from the request
+        query = request.data.get("query", "")
+        
+        # Assuming table_description is required, pass it when calling generate_sql
+        table_description = "business"  # Replace with appropriate description of the table
+        
+        # Generate the SQL query
+        generated_query = generate_sql(query, table_description)
+        
+        # If no valid SQL is generated, return an error
+        if not generated_query:
+            return Response({"error": "Invalid SQL query generated."}, status=400)
+        
+        # Ensure SQL query starts with 'SELECT' (you may want to enforce this based on your use case)
+        if not generated_query.lower().startswith("select"):
+            return Response({"error": "Generated SQL query must be a SELECT statement."}, status=400)
+        
+        # Debug: Print the generated query for verification
+        print("Generated SQL:", generated_query)
+
+        # Execute the query on your PostgreSQL database (use appropriate db cursor)
+        with connection.cursor() as cursor:
+            cursor.execute(generated_query)
+            columns = [col[0] for col in cursor.description]  # Extract column names
+            results = cursor.fetchall()
+        graph_type = determine_graph_type(columns, results)
+        print(graph_type)
+        
+        # Return the results as a JSON response
+        return JsonResponse({"columns": columns, "results": results, "graph_type": graph_type}, safe=False)
+    
+    except Exception as e:
+        # Log the error to your logging system
+        print(f"Error executing SQL: {e}")
+        return Response({"error": f"An error occurred while executing the query: {str(e)}"}, status=500)
 
 # Global variables for script control
 script_running = False

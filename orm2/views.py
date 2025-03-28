@@ -10,6 +10,19 @@ import threading
 from django.db import connection
 import time
 import psycopg2
+from django.shortcuts import render
+from django.db import connection
+from django.http import JsonResponse
+import json
+import matplotlib.pyplot as plt
+import seaborn as sns
+import io
+import base64
+from django.http import JsonResponse
+from django.contrib.auth.models import User
+from rest_framework.authentication import TokenAuthentication
+import io
+from django.core.files.uploadedfile import InMemoryUploadedFile
 import random
 from rest_framework.decorators import api_view
 import mysql.connector

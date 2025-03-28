@@ -7,6 +7,7 @@ import numpy as np
 from .models import Business
 from .serializers import BusinessSerializer
 import threading
+from django.db import connection
 import time
 import psycopg2
 import random

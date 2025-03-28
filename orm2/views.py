@@ -20,9 +20,10 @@ OPENAI_API_KEY="sk-proj-OmhrP_YGSt-wCoORNBtnrYlzaY1X1mCeMcNE3ryN1DIY0DZQL6fg1d7w
 
 OpenAI.api_key = os.getenv('OPENAI_API_KEY') 
 OPENAI_API_KEY= os.getenv('OPENAI_API_KEY') 
-
-client = OpenAI(api_key=OPENAI_API_KEY)
 openai.api_key = os.getenv('OPENAI_API_KEY')  
+
+client = OpenAI(api_key="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")
+
 
 def generate_sql(natural_language_query, table_description):
     """

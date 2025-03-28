@@ -12,6 +12,7 @@ import psycopg2
 import random
 from rest_framework.decorators import api_view
 import mysql.connector
+import os 
 import openai
 from openai import OpenAI
 OpenAI.api_key ="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"

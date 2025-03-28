@@ -144,28 +144,28 @@ else:
         #},
     #}
 #}
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.mysql',
-   #     'NAME': 'postgres',  # Replace with your actual database name
-    #    'USER': 'sowji',  # Your PostgreSQL username
-     #   'PASSWORD': 'Sairam#123',  # Your PostgreSQL password
-      #  'HOST': 'etlsql.mysql.database.azure.com',  # Your Azure PostgreSQL host
-       # 'PORT': '3306',  # Default PostgreSQL port
-        
-    #}
-#}
-
-
-
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',  # The database file
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'postgres',  # Replace with your actual database name
+        'USER': 'sowji',  # Your PostgreSQL username
+        'PASSWORD': 'Sairam#123',  # Your PostgreSQL password
+        'HOST': 'etlsql.mysql.database.azure.com',  # Your Azure PostgreSQL host
+        'PORT': '3306',  # Default PostgreSQL port
+        
     }
 }
+
+
+
+
+
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.sqlite3',
+   #     'NAME': BASE_DIR / 'db.sqlite3',  # The database file
+    #}
+#}
 
 
 

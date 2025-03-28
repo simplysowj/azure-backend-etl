@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UploadBusinessExcel, BusinessStatistics,business_list_create, business_update_delete, Profit, USA, BusinessCreateView,Revenue,StartScript, StopScript,TopBusinessesByRevenue,BusinessAnalytics,TopCountriesByRevenue,ProfitByCountry
+from .views import UploadBusinessExcel, execute_query,BusinessStatistics,business_list_create, business_update_delete, Profit, USA, BusinessCreateView,Revenue,StartScript, StopScript,TopBusinessesByRevenue,BusinessAnalytics,TopCountriesByRevenue,ProfitByCountry
 
 urlpatterns = [
     #path('upload/', UploadBusinessExcel.as_view(), name='upload_business_excel'),

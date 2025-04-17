@@ -144,27 +144,27 @@ else:
         #},
     #}
 #}
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.mysql',
-   #     'NAME': 'postgres',  # Replace with your actual database name
-    #    'USER': 'sowji',  # Your PostgreSQL username
-     #   'PASSWORD': 'Sairam#123',  # Your PostgreSQL password
-      #  'HOST': 'etlsql.mysql.database.azure.com',  # Your Azure PostgreSQL host
-       # 'PORT': '3306',  # Default PostgreSQL port
-        
-    #}
-#}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'etldb',  
-        'USER': 'admin', 
-        'PASSWORD': 'Sairam#123',  
-        'HOST': 'database-1.cehi60qeymyc.us-east-1.rds.amazonaws.com',  
-        'PORT': '3306',  
+        'NAME': 'postgres',  # Replace with your actual database name
+        'USER': 'sowji',  # Your PostgreSQL username
+        'PASSWORD': 'Sairam#123',  # Your PostgreSQL password
+        'HOST': 'etlsql.mysql.database.azure.com',  # Your Azure PostgreSQL host
+        'PORT': '3306',  # Default PostgreSQL port
+        
     }
 }
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.mysql',
+   #     'NAME': 'etldb',  
+    #    'USER': 'admin', 
+     #   'PASSWORD': 'Sairam#123',  
+      #  'HOST': 'database-1.cehi60qeymyc.us-east-1.rds.amazonaws.com',  
+       # 'PORT': '3306',  
+    #}
+#}
 
 
 

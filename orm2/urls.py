@@ -1,8 +1,9 @@
 from django.urls import path
 from .views import UploadBusinessExcel, execute_query,BusinessStatistics,business_list_create, business_update_delete, Profit, USA, BusinessCreateView,Revenue,StartScript, StopScript,TopBusinessesByRevenue,BusinessAnalytics,TopCountriesByRevenue,ProfitByCountry
-
+from .views import LoginView
 urlpatterns = [
     #path('upload/', UploadBusinessExcel.as_view(), name='upload_business_excel'),
+    path('login/', LoginView.as_view(), name='login'),
     path('business/', business_list_create, name='business-list-create'),
     path('business/<int:pk>/', business_update_delete, name='business-update-delete'),
     path('start-script/', StartScript.as_view(), name='start_script'),

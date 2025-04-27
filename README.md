@@ -17,6 +17,14 @@
 - **Smart Visualizations**: Auto-generate Matplotlib/Seaborn charts from queries
 - **Anomaly Detection**: Built-in PySpark ML alerts for data irregularities
 - **Multi-Source Ingestion**: Excel, web forms, APIs → PostgreSQL via Django ORM
+```mermaid
+graph TD
+    A[Data Sources] --> B{Kafka}
+    B --> C[PySpark Processing]
+    C --> D[(PostgreSQL)]
+    D --> E[Django API]
+    E --> F[GPT-4 NLP]
+    F --> G[React Dashboard]
 
 ## Tech Stack
 
@@ -42,14 +50,7 @@ Use Cases
 E-Commerce
 
 
-```mermaid
-graph TD
-    A[Data Sources] --> B{Kafka}
-    B --> C[PySpark Processing]
-    C --> D[(PostgreSQL)]
-    D --> E[Django API]
-    E --> F[GPT-4 NLP]
-    F --> G[React Dashboard]
+
 
 Real-time sales dashboards
 

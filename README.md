@@ -30,14 +30,7 @@
 
 ## Architecture
 
-    A[Data Sources] --> B{Kafka}
-    B --> C[PySpark Processing]
-    C --> D[(PostgreSQL)]
-    D --> E[Django API]
-    E --> F[GPT-4 NLP]
-    F --> G[React Dashboard]
-
-    ## Architecture
+ ## Architecture
 
 ```mermaid
 graph LR

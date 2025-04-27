@@ -30,8 +30,6 @@
 
 ## Architecture
 
-```mermaid
-graph LR
     A[Data Sources] --> B{Kafka}
     B --> C[PySpark Processing]
     C --> D[(PostgreSQL)]

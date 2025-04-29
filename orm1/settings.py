@@ -130,20 +130,7 @@ if ssl_cert:
 else:
     print("⚠ No SSL certificate found in environment variables.")
 
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.postgresql',
-   #     'NAME': 'postgres',  # Replace with your actual database name
-    #    'USER': 'sowji',  # Your PostgreSQL username
-     #   'PASSWORD': 'Sairam#123',  # Your PostgreSQL password
-      #  'HOST': 'etlpostgre.postgres.database.azure.com',  # Your Azure PostgreSQL host
-       # 'PORT': '5432',  # Default PostgreSQL port
-        # 'OPTIONS': {
-         #   'sslmode': 'require',  # Disabling SSL encryption
-           
-        #},
-    #}
-#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
